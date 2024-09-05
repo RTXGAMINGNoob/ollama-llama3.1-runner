@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLaMA Model Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>LLaMA Model Interface</h1>
+    <textarea id="inputText" placeholder="Enter your input here..." rows="4" cols="50"></textarea><br>
+    <button id="runModel">Run Model</button>
+    <h2>Output:</h2>
+    <pre id="outputText"></pre>
+
+    <script>
+        document.getElementById('runModel').onclick = async () => {
+            const inputText = document.getElementById('inputText').value;
+            const response = await fetch('/run-model', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: inputText })
+            });
+            const result = await response.json();
+            document.getElementById('outputText').innerText = result.output;
+        };
+    </script>
+
+    <footer>
+        &copy; 2024 Arvind. All rights reserved.
+    </footer>
+</body>
+</html>
