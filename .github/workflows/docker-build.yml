@@ -1,4 +1,4 @@
-name: Build and Run Docker Container
+name: Build and Run Docker
 
 on:
   push:
@@ -10,16 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out the code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
+      - name: Build Docker image
+        run: docker build -t my-image-name .
 
-    - name: Build the Docker image
-      run: |
-        docker build -t my-docker-image .
-
-    - name: Run the Docker container
-      run: |
-        docker run my-docker-image
+      - name: Run Docker container
+        run: docker run my-image-name
