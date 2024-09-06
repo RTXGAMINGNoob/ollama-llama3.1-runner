@@ -1,21 +1,15 @@
-# Base image
-FROM ubuntu:20.04
+# Use a base image with Python
+FROM python:3.9
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    python3-pip \
-    curl \
-    git
+# Set the working directory
+WORKDIR /app
 
-# Install Ollama (Add your specific instructions here)
-RUN curl -fsSL https://ollama.ai/install.sh | bash
+# Copy requirements and install them
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+# Copy the rest of your application code
+COPY . .
 
-# Copy the model script
-COPY run_model.py .
-
-# Command to run the model
-CMD ["python3", "run_model.py"]
+# Command to run your application
+CMD ["python", "run_llama.py"]
