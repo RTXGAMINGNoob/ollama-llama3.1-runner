@@ -3,5 +3,5 @@ ollama
 numpy
 pandas
 requests
-
+lspci
 # Add other Python packages you need
