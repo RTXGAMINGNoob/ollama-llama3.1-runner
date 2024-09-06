@@ -7,6 +7,8 @@ WORKDIR /app
 # Copy the requirements.txt file into the container
 COPY requirements.txt .
 
+#install driver checking tool
+
 # Install Python dependencies
 RUN pip install -r requirements.txt
 
