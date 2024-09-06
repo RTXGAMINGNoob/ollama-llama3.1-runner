@@ -16,8 +16,8 @@ COPY requirements.txt .
 # Install Python packages
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Copy the rest of your application code
+# Copy the rest of your application code into the container
 COPY . .
 
 # Command to run your application
-CMD [python3, server.py]
+CMD ["python3", "server.py"]  # Ensure this points to your main script
