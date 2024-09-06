@@ -21,3 +21,5 @@ COPY . .
 
 # Command to run your application
 CMD ["python3", "server.py"]  # Ensure this points to your main script
+
+EXPOSE 5000
