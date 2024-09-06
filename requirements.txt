@@ -3,9 +3,7 @@ ollama
 numpy
 pandas
 requests
-lspci
 tensorflow-gpu
-pandas
 matplotlib
 scikit-learn
 # Add other Python packages you need

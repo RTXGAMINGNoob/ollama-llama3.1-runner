@@ -1,22 +1,23 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+# Use the official Ubuntu 20.04 base image
+FROM ubuntu:20.04
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the requirements.txt file into the container
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-dev \
+    && apt-get clean
+
+# Copy requirements.txt into the image
 COPY requirements.txt .
 
-#install driver checking tool
+# Install Python packages
+RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Install Python dependencies
-RUN pip install -r requirements.txt
-
-# Copy the rest of the application code into the container
+# Copy the rest of your application code
 COPY . .
 
-# Expose port 5000
-EXPOSE 5000
-
-# Command to run the application
-CMD ["python", "server.py"]
+# Command to run your application
+CMD [python3, server.py]
